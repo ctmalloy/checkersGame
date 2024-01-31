@@ -1,29 +1,27 @@
-import checkers
 import numpy as np
 
 
-def game():
-    rebuild = True
-    size = int(input("What size game board would you like to play?: "))
-    board = checkers.build_board(size)
-    while rebuild:
-        print(f"\nGameboard: \n{board}\n")
-        board_values = np.unique(board)
-        dictionary = {}
-        print("Count of each value:")
-        for x in board_values:
-            dictionary.update(checkers.get_count(board, x))
-        for key, value in dictionary.items():
-            print(f"{key}: {value}")
-
-        change = input("\nWould you like to change the size of the board? (y/n): ")
-        if change.upper() == 'Y':
-            new_size = int(input("What size would you like to change the board to?: "))
-            board = checkers.change_size(new_size)
-        else:
-            print("Thank you for playing!")
-            rebuild = False
+def build_board(size):
+    board = np.random.choice(['Empty', 'Red', 'Black'], (size, size))
+    return board
 
 
-if __name__ == '__main__':
-    game()
+def get_count(board, value):
+    count = 0
+    for a_list in board:
+        for a_value in a_list:
+            if a_value == value:
+                count += 1
+    return {value: count}
+
+
+def change_size(size):
+    return build_board(size)
+
+
+if __name__ == "__main__":
+    print("\nWarning: this file is not intended to be run as main")
+
+# debug
+# print(build_board(3))
+# print(get_count(build_board(3), "Empty"))
