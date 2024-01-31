@@ -21,7 +21,3 @@ def change_size(size):
 
 if __name__ == "__main__":
     print("\nWarning: this file is not intended to be run as main")
-
-# debug
-# print(build_board(3))
-# print(get_count(build_board(3), "Empty"))
